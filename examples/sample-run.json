@@ -1,0 +1,432 @@
+{
+  "mode": "deterministic",
+  "pendingBeforeApproval": null,
+  "state": {
+    "version": 1,
+    "runId": "sample-evidence-trail-agent",
+    "goal": "Create an evidence-backed brief on serverless concurrency and safe rollback practices using the local corpus.",
+    "status": "complete",
+    "steps": 5,
+    "toolCalls": 4,
+    "tokens": 0,
+    "observations": [
+      {
+        "tool": "search_sources",
+        "args": {
+          "query": "functions concurrency rollback"
+        },
+        "ok": true,
+        "result": [
+          {
+            "id": "source-1",
+            "title": "Synthetic serverless notes",
+            "score": 2,
+            "snippet": "Event-driven functions execute application code in response to events."
+          },
+          {
+            "id": "source-2",
+            "title": "Synthetic reliability review",
+            "score": 1,
+            "snippet": "A rollback plan should identify the previous version and define recovery metrics."
+          }
+        ]
+      },
+      {
+        "tool": "read_source",
+        "args": {
+          "id": "source-1"
+        },
+        "ok": true,
+        "result": {
+          "id": "source-1",
+          "title": "Synthetic serverless notes",
+          "passages": [
+            {
+              "id": "p1",
+              "text": "Event-driven functions execute application code in response to events."
+            },
+            {
+              "id": "p2",
+              "text": "Function concurrency must stay within downstream database connection limits."
+            }
+          ]
+        }
+      },
+      {
+        "tool": "read_source",
+        "args": {
+          "id": "source-2"
+        },
+        "ok": true,
+        "result": {
+          "id": "source-2",
+          "title": "Synthetic reliability review",
+          "passages": [
+            {
+              "id": "p1",
+              "text": "A rollback plan should identify the previous version and define recovery metrics."
+            },
+            {
+              "id": "p2",
+              "text": "A simulated rollback does not prove a production deployment will recover."
+            }
+          ]
+        }
+      },
+      {
+        "tool": "submit_brief",
+        "args": {
+          "title": "Serverless recovery: evidence brief",
+          "claims": [
+            {
+              "claim": "Event-driven functions execute application code in response to events.",
+              "quote": "Event-driven functions execute application code in response to events.",
+              "sourceId": "source-1",
+              "passageId": "p1"
+            },
+            {
+              "claim": "Function concurrency must stay within downstream database connection limits.",
+              "quote": "Function concurrency must stay within downstream database connection limits.",
+              "sourceId": "source-1",
+              "passageId": "p2"
+            },
+            {
+              "claim": "A rollback plan should identify the previous version and define recovery metrics.",
+              "quote": "A rollback plan should identify the previous version and define recovery metrics.",
+              "sourceId": "source-2",
+              "passageId": "p1"
+            },
+            {
+              "claim": "A simulated rollback does not prove a production deployment will recover.",
+              "quote": "A simulated rollback does not prove a production deployment will recover.",
+              "sourceId": "source-2",
+              "passageId": "p2"
+            }
+          ],
+          "unanswered": [
+            "What are the real production limits and recovery results? The synthetic corpus cannot establish them."
+          ]
+        },
+        "ok": true,
+        "result": {
+          "accepted": true,
+          "citations": 4,
+          "brief": {
+            "title": "Serverless recovery: evidence brief",
+            "claims": [
+              {
+                "claim": "Event-driven functions execute application code in response to events.",
+                "quote": "Event-driven functions execute application code in response to events.",
+                "sourceId": "source-1",
+                "passageId": "p1"
+              },
+              {
+                "claim": "Function concurrency must stay within downstream database connection limits.",
+                "quote": "Function concurrency must stay within downstream database connection limits.",
+                "sourceId": "source-1",
+                "passageId": "p2"
+              },
+              {
+                "claim": "A rollback plan should identify the previous version and define recovery metrics.",
+                "quote": "A rollback plan should identify the previous version and define recovery metrics.",
+                "sourceId": "source-2",
+                "passageId": "p1"
+              },
+              {
+                "claim": "A simulated rollback does not prove a production deployment will recover.",
+                "quote": "A simulated rollback does not prove a production deployment will recover.",
+                "sourceId": "source-2",
+                "passageId": "p2"
+              }
+            ],
+            "unanswered": [
+              "What are the real production limits and recovery results? The synthetic corpus cannot establish them."
+            ]
+          }
+        }
+      }
+    ],
+    "trace": [
+      {
+        "index": 0,
+        "event": "tool_requested",
+        "name": "search_sources",
+        "args": {
+          "query": "functions concurrency rollback"
+        }
+      },
+      {
+        "index": 1,
+        "event": "tool_result",
+        "name": "search_sources",
+        "args": {
+          "query": "functions concurrency rollback"
+        },
+        "result": [
+          {
+            "id": "source-1",
+            "title": "Synthetic serverless notes",
+            "score": 2,
+            "snippet": "Event-driven functions execute application code in response to events."
+          },
+          {
+            "id": "source-2",
+            "title": "Synthetic reliability review",
+            "score": 1,
+            "snippet": "A rollback plan should identify the previous version and define recovery metrics."
+          }
+        ],
+        "reviewer": null
+      },
+      {
+        "index": 2,
+        "event": "tool_requested",
+        "name": "read_source",
+        "args": {
+          "id": "source-1"
+        }
+      },
+      {
+        "index": 3,
+        "event": "tool_result",
+        "name": "read_source",
+        "args": {
+          "id": "source-1"
+        },
+        "result": {
+          "id": "source-1",
+          "title": "Synthetic serverless notes",
+          "passages": [
+            {
+              "id": "p1",
+              "text": "Event-driven functions execute application code in response to events."
+            },
+            {
+              "id": "p2",
+              "text": "Function concurrency must stay within downstream database connection limits."
+            }
+          ]
+        },
+        "reviewer": null
+      },
+      {
+        "index": 4,
+        "event": "tool_requested",
+        "name": "read_source",
+        "args": {
+          "id": "source-2"
+        }
+      },
+      {
+        "index": 5,
+        "event": "tool_result",
+        "name": "read_source",
+        "args": {
+          "id": "source-2"
+        },
+        "result": {
+          "id": "source-2",
+          "title": "Synthetic reliability review",
+          "passages": [
+            {
+              "id": "p1",
+              "text": "A rollback plan should identify the previous version and define recovery metrics."
+            },
+            {
+              "id": "p2",
+              "text": "A simulated rollback does not prove a production deployment will recover."
+            }
+          ]
+        },
+        "reviewer": null
+      },
+      {
+        "index": 6,
+        "event": "tool_requested",
+        "name": "submit_brief",
+        "args": {
+          "title": "Serverless recovery: evidence brief",
+          "claims": [
+            {
+              "claim": "Event-driven functions execute application code in response to events.",
+              "quote": "Event-driven functions execute application code in response to events.",
+              "sourceId": "source-1",
+              "passageId": "p1"
+            },
+            {
+              "claim": "Function concurrency must stay within downstream database connection limits.",
+              "quote": "Function concurrency must stay within downstream database connection limits.",
+              "sourceId": "source-1",
+              "passageId": "p2"
+            },
+            {
+              "claim": "A rollback plan should identify the previous version and define recovery metrics.",
+              "quote": "A rollback plan should identify the previous version and define recovery metrics.",
+              "sourceId": "source-2",
+              "passageId": "p1"
+            },
+            {
+              "claim": "A simulated rollback does not prove a production deployment will recover.",
+              "quote": "A simulated rollback does not prove a production deployment will recover.",
+              "sourceId": "source-2",
+              "passageId": "p2"
+            }
+          ],
+          "unanswered": [
+            "What are the real production limits and recovery results? The synthetic corpus cannot establish them."
+          ]
+        }
+      },
+      {
+        "index": 7,
+        "event": "tool_result",
+        "name": "submit_brief",
+        "args": {
+          "title": "Serverless recovery: evidence brief",
+          "claims": [
+            {
+              "claim": "Event-driven functions execute application code in response to events.",
+              "quote": "Event-driven functions execute application code in response to events.",
+              "sourceId": "source-1",
+              "passageId": "p1"
+            },
+            {
+              "claim": "Function concurrency must stay within downstream database connection limits.",
+              "quote": "Function concurrency must stay within downstream database connection limits.",
+              "sourceId": "source-1",
+              "passageId": "p2"
+            },
+            {
+              "claim": "A rollback plan should identify the previous version and define recovery metrics.",
+              "quote": "A rollback plan should identify the previous version and define recovery metrics.",
+              "sourceId": "source-2",
+              "passageId": "p1"
+            },
+            {
+              "claim": "A simulated rollback does not prove a production deployment will recover.",
+              "quote": "A simulated rollback does not prove a production deployment will recover.",
+              "sourceId": "source-2",
+              "passageId": "p2"
+            }
+          ],
+          "unanswered": [
+            "What are the real production limits and recovery results? The synthetic corpus cannot establish them."
+          ]
+        },
+        "result": {
+          "accepted": true,
+          "citations": 4,
+          "brief": {
+            "title": "Serverless recovery: evidence brief",
+            "claims": [
+              {
+                "claim": "Event-driven functions execute application code in response to events.",
+                "quote": "Event-driven functions execute application code in response to events.",
+                "sourceId": "source-1",
+                "passageId": "p1"
+              },
+              {
+                "claim": "Function concurrency must stay within downstream database connection limits.",
+                "quote": "Function concurrency must stay within downstream database connection limits.",
+                "sourceId": "source-1",
+                "passageId": "p2"
+              },
+              {
+                "claim": "A rollback plan should identify the previous version and define recovery metrics.",
+                "quote": "A rollback plan should identify the previous version and define recovery metrics.",
+                "sourceId": "source-2",
+                "passageId": "p1"
+              },
+              {
+                "claim": "A simulated rollback does not prove a production deployment will recover.",
+                "quote": "A simulated rollback does not prove a production deployment will recover.",
+                "sourceId": "source-2",
+                "passageId": "p2"
+              }
+            ],
+            "unanswered": [
+              "What are the real production limits and recovery results? The synthetic corpus cannot establish them."
+            ]
+          }
+        },
+        "reviewer": null
+      },
+      {
+        "index": 8,
+        "event": "completed"
+      }
+    ],
+    "receipts": {
+      "{\"args\":{\"claims\":[{\"claim\":\"Event-driven functions execute application code in response to events.\",\"passageId\":\"p1\",\"quote\":\"Event-driven functions execute application code in response to events.\",\"sourceId\":\"source-1\"},{\"claim\":\"Function concurrency must stay within downstream database connection limits.\",\"passageId\":\"p2\",\"quote\":\"Function concurrency must stay within downstream database connection limits.\",\"sourceId\":\"source-1\"},{\"claim\":\"A rollback plan should identify the previous version and define recovery metrics.\",\"passageId\":\"p1\",\"quote\":\"A rollback plan should identify the previous version and define recovery metrics.\",\"sourceId\":\"source-2\"},{\"claim\":\"A simulated rollback does not prove a production deployment will recover.\",\"passageId\":\"p2\",\"quote\":\"A simulated rollback does not prove a production deployment will recover.\",\"sourceId\":\"source-2\"}],\"title\":\"Serverless recovery: evidence brief\",\"unanswered\":[\"What are the real production limits and recovery results? The synthetic corpus cannot establish them.\"]},\"name\":\"submit_brief\"}": {
+        "accepted": true,
+        "citations": 4,
+        "brief": {
+          "title": "Serverless recovery: evidence brief",
+          "claims": [
+            {
+              "claim": "Event-driven functions execute application code in response to events.",
+              "quote": "Event-driven functions execute application code in response to events.",
+              "sourceId": "source-1",
+              "passageId": "p1"
+            },
+            {
+              "claim": "Function concurrency must stay within downstream database connection limits.",
+              "quote": "Function concurrency must stay within downstream database connection limits.",
+              "sourceId": "source-1",
+              "passageId": "p2"
+            },
+            {
+              "claim": "A rollback plan should identify the previous version and define recovery metrics.",
+              "quote": "A rollback plan should identify the previous version and define recovery metrics.",
+              "sourceId": "source-2",
+              "passageId": "p1"
+            },
+            {
+              "claim": "A simulated rollback does not prove a production deployment will recover.",
+              "quote": "A simulated rollback does not prove a production deployment will recover.",
+              "sourceId": "source-2",
+              "passageId": "p2"
+            }
+          ],
+          "unanswered": [
+            "What are the real production limits and recovery results? The synthetic corpus cannot establish them."
+          ]
+        }
+      }
+    },
+    "pending": null,
+    "answer": "Accepted brief with 4 verified extractive citations. Production outcomes remain unverified."
+  },
+  "result": {
+    "title": "Serverless recovery: evidence brief",
+    "claims": [
+      {
+        "claim": "Event-driven functions execute application code in response to events.",
+        "quote": "Event-driven functions execute application code in response to events.",
+        "sourceId": "source-1",
+        "passageId": "p1"
+      },
+      {
+        "claim": "Function concurrency must stay within downstream database connection limits.",
+        "quote": "Function concurrency must stay within downstream database connection limits.",
+        "sourceId": "source-1",
+        "passageId": "p2"
+      },
+      {
+        "claim": "A rollback plan should identify the previous version and define recovery metrics.",
+        "quote": "A rollback plan should identify the previous version and define recovery metrics.",
+        "sourceId": "source-2",
+        "passageId": "p1"
+      },
+      {
+        "claim": "A simulated rollback does not prove a production deployment will recover.",
+        "quote": "A simulated rollback does not prove a production deployment will recover.",
+        "sourceId": "source-2",
+        "passageId": "p2"
+      }
+    ],
+    "unanswered": [
+      "What are the real production limits and recovery results? The synthetic corpus cannot establish them."
+    ]
+  }
+}
